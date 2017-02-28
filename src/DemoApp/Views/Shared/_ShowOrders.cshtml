@@ -1,0 +1,47 @@
+@model IEnumerable<DemoApp.Models.Order>
+
+@if (ViewBag.OrderCount > 0)
+{
+    <h3>@ViewBag.OrderCount Orders Found</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ord_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ord_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ord_amt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustId)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ord_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ord_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ord_amt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustId)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+else
+{
+    <h3>No order found for this customer</h3>
+}

@@ -1,0 +1,66 @@
+@model IEnumerable<DemoApp.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+@section Scripts{
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        function disp(x) {
+                event.preventDefault();
+                var _this = x;
+                $.ajax({
+                    url: _this.href, success: function (res) {
+                        $('#' + _this.getAttribute("data-target")).html(res);
+                     }
+                });
+        }
+    </script>
+}
+<h3> <a asp-action="NewCustomer" asp-controller="Customer" id="btnnewcustomer">Create a new Customer</a></h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contact)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact)
+            </td>
+            <td>
+                <a asp-action="GetOrderByCustomerId" asp-route-id="@item.CustId" asp-controller="Order"
+                   data-target="order-container" id="btnorders" onclick="disp(this)">Orders</a>
+             </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div id="order-container"></div>

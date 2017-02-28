@@ -1,0 +1,56 @@
+@model DemoApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Customer</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*<div class="form-group">
+            <label asp-for="CustId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CustId" class="form-control" />
+                <span asp-validation-for="CustId" class="text-danger" />
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="CustName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CustName" class="form-control" />
+                <span asp-validation-for="CustName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="contact" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="contact" class="form-control" />
+                <span asp-validation-for="contact" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="btncreate" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
